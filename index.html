@@ -3,698 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VOGUE - Fashion, Beauty, Celebrity, Culture</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Reset and base styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fff;
-        }
-        
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        
-        a {
-            text-decoration: none;
-            color: #000;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        /* Announcement bar */
-        .announcement-bar {
-            background-color: #f9f9f9;
-            padding: 5px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .announcement-bar-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 12px;
-        }
-        
-        .announcement-text {
-            font-weight: 500;
-        }
-        
-        .subscribe-link {
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-        
-        /* Header styles */
-        .site-header {
-            position: sticky;
-            top: 0;
-            background-color: #fff;
-            z-index: 100;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        
-        .header-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-        
-        .vogue-logo {
-            display: flex;
-            justify-content: center;
-            padding: 10px 0;
-        }
-        
-        .site-title {
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin: 0;
-            font-family: 'Libre Baskerville', serif;
-            font-weight: 700;
-        }
-        
-        .site-logo {
-            max-width: 150px;
-            margin: 0 auto;
-        }
-        
-        .header-search, .header-actions {
-            width: 40px;
-        }
-        
-        .search-toggle, .menu-toggle {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 5px;
-        }
-        
-        /* Navigation */
-        .main-navigation {
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .vogue-menu-container {
-            display: flex;
-            justify-content: center;
-        }
-        
-        .menu {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 10px 0;
-        }
-        
-        .menu-item {
-            margin: 0 15px;
-        }
-        
-        .menu-item a {
-            font-size: 13px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: color 0.3s;
-        }
-        
-        .menu-item a:hover {
-            color: #666;
-        }
-        
-        /* Featured banner */
-        .featured-banner {
-            text-align: center;
-            padding: 20px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .featured-banner-inner {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-        }
-        
-        .featured-banner-image {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-        }
-        
-        .featured-banner-text {
-            font-size: 16px;
-            font-weight: 500;
-        }
-        
-        .subscribe-now-btn {
-            background-color: #000;
-            color: #fff;
-            padding: 8px 16px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-left: 20px;
-        }
-        
-        /* Main content */
-        .site-content {
-            padding: 40px 0;
-        }
-        
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 30px;
-        }
-        
-        /* Featured post */
-        .featured-post {
-            grid-column: span 8;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-        }
-        
-        .post-card {
-            margin-bottom: 30px;
-        }
-        
-        .post-thumbnail {
-            margin-bottom: 15px;
-            overflow: hidden;
-        }
-        
-        .post-thumbnail img {
-            transition: transform 0.3s;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .post-thumbnail img:hover {
-            transform: scale(1.03);
-        }
-        
-        .post-category {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-            display: block;
-        }
-        
-        .post-title {
-            font-family: 'Libre Baskerville', serif;
-            font-size: 18px;
-            line-height: 1.3;
-            margin-bottom: 10px;
-        }
-        
-        .post-author {
-            font-size: 12px;
-            color: #666;
-            font-weight: 500;
-        }
-        
-        /* Sidebar */
-        .sidebar {
-            grid-column: span 4;
-        }
-        
-        .sidebar-post {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .sidebar-post-thumbnail {
-            flex: 0 0 100px;
-        }
-        
-        .sidebar-post-content {
-            flex: 1;
-        }
-        
-        .sidebar-post-title {
-            font-size: 14px;
-            line-height: 1.3;
-            margin-bottom: 5px;
-        }
-        
-        /* Footer */
-        .site-footer {
-            background-color: #f9f9f9;
-            padding: 60px 0 30px;
-            border-top: 1px solid #eee;
-        }
-        
-        .footer-widgets {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-widget {
-            margin-bottom: 30px;
-        }
-        
-        .widget-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .footer-widget ul {
-            list-style: none;
-        }
-        
-        .footer-widget li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-widget a {
-            font-size: 14px;
-            color: #666;
-        }
-        
-        .footer-widget a:hover {
-            color: #000;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-link {
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #eee;
-            border-radius: 50%;
-            transition: background-color 0.3s;
-        }
-        
-        .social-link:hover {
-            background-color: #ddd;
-        }
-        
-        .site-info {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            font-size: 14px;
-            color: #666;
-        }
-        
-        /* Responsive styles */
-        @media (max-width: 1200px) {
-            .content-grid {
-                gap: 20px;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .featured-post {
-                grid-column: span 12;
-            }
-            
-            .sidebar {
-                grid-column: span 12;
-            }
-            
-            .footer-widgets {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .featured-post {
-                grid-template-columns: 1fr;
-            }
-            
-            .menu {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .menu-item {
-                margin: 5px 0;
-            }
-            
-            .featured-banner-inner {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .subscribe-now-btn {
-                margin-left: 0;
-                margin-top: 10px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .footer-widgets {
-                grid-template-columns: 1fr;
-            }
-            
-            .site-title {
-                font-size: 2rem;
-            }
-        }
-    </style>
+    <title>Odissi Classic - Classical Indian Dance</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="page" class="site">
-        <!-- Announcement bar -->
+    <header>
         <div class="announcement-bar">
-            <div class="container">
-                <div class="announcement-bar-content">
-                    <div class="announcement-text">The August issue is here</div>
-                    <div class="announcement-action">
-                        <a href="#" class="subscribe-link">SUBSCRIBE</a>
-                    </div>
-                </div>
+            <p>Discover the beauty of Odissi Classical Dance</p>
+        </div>
+        
+        <div class="main-header">
+            <div class="logo">
+                <h1>ODISSI CLASSIC</h1>
+            </div>
+            
+            <div class="header-controls">
+                <button class="search-toggle"><i class="fas fa-search"></i></button>
+                <button class="menu-toggle"><i class="fas fa-bars"></i></button>
             </div>
         </div>
         
-        <!-- Header -->
-        <header id="masthead" class="site-header">
-            <div class="container">
-                <div class="header-inner">
-                    <div class="header-search">
-                        <button class="search-toggle">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                            </svg>
-                        </button>
-                    </div>
-                    
-                    <div class="site-branding vogue-logo">
-                        <h1 class="site-title"><a href="#" rel="home">VOGUE</a></h1>
-                    </div>
+        <nav class="main-navigation">
+            <ul>
+                <li><a href="#history">History</a></li>
+                <li><a href="#techniques">Techniques</a></li>
+                <li><a href="#costumes">Costumes</a></li>
+                <li><a href="#music">Music</a></li>
+                <li><a href="#legends">Legendary Dancers</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+            </ul>
+        </nav>
+        
+        <div class="search-form">
+            <form>
+                <input type="text" placeholder="Search...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+    </header>
 
-                    <div class="header-actions">
-                        <button class="menu-toggle">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Main navigation menu -->
-            <nav id="site-navigation" class="main-navigation vogue-navigation">
-                <div class="container">
-                    <div class="vogue-menu-container">
-                        <ul id="primary-menu" class="menu">
-                            <li class="menu-item"><a href="#">FASHION</a></li>
-                            <li class="menu-item"><a href="#">RUNWAY</a></li>
-                            <li class="menu-item"><a href="#">SHOPPING</a></li>
-                            <li class="menu-item"><a href="#">BEAUTY</a></li>
-                            <li class="menu-item"><a href="#">CULTURE</a></li>
-                            <li class="menu-item"><a href="#">LIVING</a></li>
-                            <li class="menu-item"><a href="#">WEDDINGS</a></li>
-                            <li class="menu-item"><a href="#">VOGUE BUSINESS</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
-        
-        <!-- Featured banner -->
-        <div class="featured-banner">
-            <div class="container">
-                <div class="featured-banner-inner">
-                    <img src="5ff05a68-6290-4db8-96e2-7d8d12c1edf4_rw_1200.jpeg" alt="August Issue" class="featured-banner-image">
-                    <div class="featured-banner-text">The August issue is here featuring Anne Hathaway</div>
-                    <a href="#" class="subscribe-now-btn">SUBSCRIBE NOW</a>
-                </div>
-            </div>
+    <div class="featured-banner">
+        <div class="banner-content">
+            <h2>The Ancient Art of Odissi</h2>
+            <p>One of India's oldest classical dance forms originating from Odisha</p>
+            <a href="#history" class="btn">EXPLORE NOW</a>
         </div>
-        
-        <!-- Main content -->
-        <div id="content" class="site-content">
-            <div class="container">
-                <div class="content-grid">
-                    <!-- Featured posts -->
-                    <div class="featured-post">
-                        <article class="post-card">
-                            <div class="post-thumbnail">
-                                <a href="#">
-                                    <img src="03-MT-17.jpg" alt="Fashion Post">
-                                </a>
-                            </div>
-                            <div class="post-content">
-                                <span class="post-category">SHOPPING</span>
-                                <h2 class="post-title"><a href="#">How to Style Loafers for Fall, Whether Your Vibe Is Preppy, Playful, or Polished</a></h2>
-                                <div class="post-author">BY CHRISTINA HOLEVAS</div>
-                            </div>
-                        </article>
-                        
-                        <article class="post-card">
-                            <div class="post-thumbnail">
-                                <a href="#">
-                                    <img src="Maryam-BW-scaled.jpg" alt="Fashion Post">
-                                </a>
-                            </div>
-                            <div class="post-content">
-                                <span class="post-category">FASHION</span>
-                                <h2 class="post-title"><a href="#">The Latest Street Style Trends from Fashion Week</a></h2>
-                                <div class="post-author">BY VOGUE EDITORS</div>
-                            </div>
-                        </article>
-                        
-                        <article class="post-card">
-                            <div class="post-thumbnail">
-                                <a href="#">
-                                    <img src="Balasaraswati-Madras-1934.jpg" alt="Culture Post">
-                                </a>
-                            </div>
-                            <div class="post-content">
-                                <span class="post-category">CULTURE</span>
-                                <h2 class="post-title"><a href="#">Celebrating the Legacy of Classical Dance Traditions</a></h2>
-                                <div class="post-author">BY CULTURAL EDITORS</div>
-                            </div>
-                        </article>
-                        
-                        <article class="post-card">
-                            <div class="post-thumbnail">
-                                <a href="#">
-                                    <img src="DSC_4583-1.webp" alt="Beauty Post">
-                                </a>
-                            </div>
-                            <div class="post-content">
-                                <span class="post-category">BEAUTY</span>
-                                <h2 class="post-title"><a href="#">Summer Skincare Essentials for a Radiant Glow</a></h2>
-                                <div class="post-author">BY BEAUTY EDITORS</div>
-                            </div>
-                        </article>
-                    </div>
-                    
-                    <!-- Sidebar -->
-                    <div class="sidebar">
-                        <div class="sidebar-section">
-                            <h3 class="widget-title">WEDDINGS</h3>
-                            <article class="sidebar-post">
-                                <div class="sidebar-post-thumbnail">
-                                    <a href="#">
-                                        <img src="images.jpeg" alt="Wedding Post">
-                                    </a>
-                                </div>
-                                <div class="sidebar-post-content">
-                                    <h4 class="sidebar-post-title"><a href="#">This Bride Wore Her Mom's Custom Issey Miyake Wedding Look From the '80s</a></h4>
-                                    <div class="post-author">BY SHELBY WAX</div>
-                                </div>
-                            </article>
-                        </div>
-                        
-                        <div class="sidebar-section">
-                            <h3 class="widget-title">TV & MOVIES</h3>
-                            <article class="sidebar-post">
-                                <div class="sidebar-post-thumbnail">
-                                    <a href="#">
-                                        <img src="images (1).jpeg" alt="TV Post">
-                                    </a>
-                                </div>
-                                <div class="sidebar-post-content">
-                                    <h4 class="sidebar-post-title"><a href="#">Jenna Ortega and Catherine Zeta-Jones Talk Scareening, Scary Dolls, and David Lynch</a></h4>
-                                    <div class="post-author">BY VOGUE</div>
-                                </div>
-                            </article>
-                        </div>
-                        
-                        <div class="sidebar-section">
-                            <h3 class="widget-title">WELLNESS</h3>
-                            <article class="sidebar-post">
-                                <div class="sidebar-post-thumbnail">
-                                    <a href="#">
-                                        <img src="ce7574b2ac2ec13e7a8c8c6c253109b6.jpeg" alt="Wellness Post">
-                                    </a>
-                                </div>
-                                <div class="sidebar-post-content">
-                                    <h4 class="sidebar-post-title"><a href="#">I Eat Psyllium Husks Every Day—Here Are the Benefits</a></h4>
-                                    <div class="post-author">BY PHILIPP WEHSACK</div>
-                                </div>
-                            </article>
-                        </div>
-                        
-                        <div class="sidebar-section">
-                            <h3 class="widget-title">CELEBRITY STYLE</h3>
-                            <article class="sidebar-post">
-                                <div class="sidebar-post-thumbnail">
-                                    <a href="#">
-                                        <img src="Indrani_John-Lindquist_1960-scaled.jpg" alt="Celebrity Post">
-                                    </a>
-                                </div>
-                                <div class="sidebar-post-content">
-                                    <h4 class="sidebar-post-title"><a href="#">Hailey Bieber Amps up Date Night Style for a Celebrity Favorite</a></h4>
-                                    <div class="post-author">BY STYLE EDITORS</div>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Footer -->
-        <footer id="colophon" class="site-footer">
-            <div class="container">
-                <div class="footer-widgets">
-                    <div class="footer-widget">
-                        <h4 class="widget-title">About Us</h4>
-                        <p>A fashion and lifestyle magazine inspired by Vogue, featuring the latest trends, fashion news, beauty tips, and cultural insights.</p>
-                    </div>
-                    
-                    <div class="footer-widget">
-                        <h4 class="widget-title">Categories</h4>
-                        <ul>
-                            <li><a href="#">Fashion</a></li>
-                            <li><a href="#">Beauty</a></li>
-                            <li><a href="#">Culture</a></li>
-                            <li><a href="#">Lifestyle</a></li>
-                            <li><a href="#">Travel</a></li>
-                            <li><a href="#">Food</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-widget">
-                        <h4 class="widget-title">Recent Posts</h4>
-                        <ul>
-                            <li><a href="#">The Latest Fashion Trends for Summer</a></li>
-                            <li><a href="#">Beauty Tips for Every Skin Type</a></li>
-                            <li><a href="#">Cultural Events You Shouldn't Miss</a></li>
-                            <li><a href="#">Lifestyle Changes for Better Health</a></li>
-                            <li><a href="#">Travel Destinations for Your Next Vacation</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-widget">
-                        <h4 class="widget-title">Follow Us</h4>
-                        <div class="social-links">
-                            <a href="#" class="social-link">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
-                                </svg>
-                            </a>
-                            <a href="#" class="social-link">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
-                                </svg>
-                            </a>
-                            <a href="#" class="social-link">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
-                                </svg>
-                            </a>
-                            <a href="#" class="social-link">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="site-info">
-                    <p>&copy; 2023 DIMATE. All Rights Reserved.</p>
-                </div>
-            </div>
-        </footer>
     </div>
-    
-    <script>
-        // Header functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Search toggle functionality
-            const searchToggle = document.querySelector('.search-toggle');
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navigation = document.querySelector('.main-navigation');
-            
-            if (searchToggle) {
-                searchToggle.addEventListener('click', function() {
-                    alert('Search functionality would be implemented here');
-                });
-            }
-            
-            if (menuToggle && navigation) {
-                menuToggle.addEventListener('click', function() {
-                    navigation.classList.toggle('toggled');
-                    if (navigation.classList.contains('toggled')) {
-                        navigation.style.display = 'block';
-                    } else {
-                        navigation.style.display = '';
-                    }
-                });
-                
-                // Handle window resize
-                window.addEventListener('resize', function() {
-                    if (window.innerWidth > 768) {
-                        navigation.classList.remove('toggled');
-                        navigation.style.display = '';
-                    } else if (navigation.classList.contains('toggled')) {
-                        navigation.style.display = 'block';
-                    }
-                });
-                
-                // Initialize menu display based on window width
-                if (window.innerWidth <= 768 && navigation.classList.contains('toggled')) {
-                    navigation.style.display = 'block';
-                }
-            }
-        });
-    </script>
+
+    <main class="content-area">
+        <div class="main-content">
+            <section id="history" class="content-section">
+                <h2 class="section-title">HISTORY</h2>
+                <div class="section-content">
+                    <div class="image-container">
+                        <img src="Balasaraswati-Madras-1934.jpg" alt="Historical Odissi Dance">
+                    </div>
+                    <div class="text-content">
+                        <h3>Origins of Odissi</h3>
+                        <p>Odissi is one of the oldest surviving dance forms of India with a history of over 2,000 years. It originated in the Hindu temples of ancient Odisha, formerly known as Orissa. The sculptures on the temples of Odisha, particularly the Konark Sun Temple and the Jagannath Temple in Puri, provide evidence of the antiquity of this dance form.</p>
+                        <p>During the medieval period, Odissi was performed by Maharis (temple dancers) and Gotipuas (young boys dressed as girls). After a period of decline during colonial rule, Odissi was revived in the mid-20th century by pioneers like Kelucharan Mohapatra, Pankaj Charan Das, and Deba Prasad Das.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="techniques" class="content-section">
+                <h2 class="section-title">TECHNIQUES</h2>
+                <div class="section-content">
+                    <div class="text-content">
+                        <h3>The Unique Postures of Odissi</h3>
+                        <p>Odissi is characterized by its unique postures called 'Tribhangi' (three-fold bend) and 'Chouka' (square stance). The dance form employs both abstract (Nritta) and expressive (Abhinaya) elements.</p>
+                        <p>The basic units of Odissi dance include:</p>
+                        <ul>
+                            <li><strong>Bhumi Pranam:</strong> Salutation to Mother Earth</li>
+                            <li><strong>Mangalacharan:</strong> Invocation to deities</li>
+                            <li><strong>Batu/Battu Nrutya:</strong> Pure dance</li>
+                            <li><strong>Pallavi:</strong> Graceful movements with musical elaboration</li>
+                            <li><strong>Abhinaya:</strong> Expressional dance</li>
+                            <li><strong>Moksha:</strong> Liberation, the concluding item</li>
+                        </ul>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                    <div class="image-container">
+                        <img src="DSC_4583-1.webp" alt="Odissi Dance Techniques">
+                    </div>
+                </div>
+            </section>
+
+            <section id="costumes" class="content-section">
+                <h2 class="section-title">COSTUMES</h2>
+                <div class="section-content">
+                    <div class="image-container">
+                        <img src="DSC_4616-1.webp" alt="Odissi Costumes">
+                    </div>
+                    <div class="text-content">
+                        <h3>Traditional Attire</h3>
+                        <p>The traditional Odissi costume is elaborate and distinctive. Female dancers wear a silk sari draped in a unique style called 'Kachha' or 'Seedha Pallu'. The fabric is richly embroidered with traditional designs, often depicting scenes from mythology.</p>
+                        <p>Key elements of the costume include:</p>
+                        <ul>
+                            <li><strong>Silver jewelry:</strong> Elaborate headpiece, necklaces, earrings, armlets, and anklets</li>
+                            <li><strong>Tahia:</strong> Crown-like headgear</li>
+                            <li><strong>Alta:</strong> Red dye applied to the feet</li>
+                            <li><strong>Ghungroo:</strong> Ankle bells</li>
+                        </ul>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="legends" class="content-section">
+                <h2 class="section-title">LEGENDARY DANCERS</h2>
+                <div class="legends-grid">
+                    <div class="legend-card">
+                        <img src="Indrani_John-Lindquist_1960-scaled.jpg" alt="Legendary Dancer">
+                        <h3>Kelucharan Mohapatra</h3>
+                        <p>Padma Vibhushan awardee who played a crucial role in the revival of Odissi dance in the 20th century.</p>
+                    </div>
+                    <div class="legend-card">
+                        <img src="Maryam-BW-scaled.jpg" alt="Legendary Dancer">
+                        <h3>Sanjukta Panigrahi</h3>
+                        <p>First Odia woman to embrace Odissi as a profession and internationally acclaimed performer.</p>
+                    </div>
+                    <div class="legend-card">
+                        <img src="03-MT-17.jpg" alt="Legendary Dancer">
+                        <h3>Kumkum Mohanty</h3>
+                        <p>Renowned dancer who established the Odissi Research Centre for the preservation of the dance form.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <aside class="sidebar">
+            <div class="sidebar-section events">
+                <h3>UPCOMING EVENTS</h3>
+                <div class="event-item">
+                    <div class="event-date">
+                        <span class="day">15</span>
+                        <span class="month">JUN</span>
+                    </div>
+                    <div class="event-details">
+                        <h4>Odissi International Festival</h4>
+                        <p>New Delhi, India</p>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-date">
+                        <span class="day">22</span>
+                        <span class="month">JUL</span>
+                    </div>
+                    <div class="event-details">
+                        <h4>Classical Dance Workshop</h4>
+                        <p>Mumbai, India</p>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-date">
+                        <span class="day">10</span>
+                        <span class="month">AUG</span>
+                    </div>
+                    <div class="event-details">
+                        <h4>Guru Purnima Celebrations</h4>
+                        <p>Bhubaneswar, Odisha</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-section gallery-preview">
+                <h3>GALLERY HIGHLIGHTS</h3>
+                <div class="gallery-grid">
+                    <img src="images.jpeg" alt="Odissi Dance">
+                    <img src="images (1).jpeg" alt="Odissi Performance">
+                    <img src="ce7574b2ac2ec13e7a8c8c6c253109b6.jpeg" alt="Odissi Dancer">
+                    <img src="5ff05a68-6290-4db8-96e2-7d8d12c1edf4_rw_1200.jpeg" alt="Odissi Pose">
+                </div>
+                <a href="#gallery" class="view-all">View All Photos</a>
+            </div>
+
+            <div class="sidebar-section subscribe">
+                <h3>STAY UPDATED</h3>
+                <p>Subscribe to our newsletter for the latest events and articles</p>
+                <form class="subscribe-form">
+                    <input type="email" placeholder="Your Email Address">
+                    <button type="submit" class="btn">SUBSCRIBE</button>
+                </form>
+            </div>
+        </aside>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>ABOUT ODISSI CLASSIC</h3>
+                <p>Dedicated to preserving and promoting the ancient art form of Odissi classical dance through education, performances, and cultural exchange.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section links">
+                <h3>QUICK LINKS</h3>
+                <ul>
+                    <li><a href="#history">History</a></li>
+                    <li><a href="#techniques">Techniques</a></li>
+                    <li><a href="#costumes">Costumes</a></li>
+                    <li><a href="#music">Music</a></li>
+                    <li><a href="#legends">Legendary Dancers</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section contact">
+                <h3>CONTACT US</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Dance Street, Bhubaneswar, Odisha, India</p>
+                <p><i class="fas fa-phone"></i> +91 1234567890</p>
+                <p><i class="fas fa-envelope"></i> info@odissiclassic.com</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2023 Odissi Classic. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
