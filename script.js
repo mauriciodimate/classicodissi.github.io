@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (searchToggle && searchForm) {
         searchToggle.addEventListener('click', function() {
             searchForm.classList.toggle('active');
-            // Close menu if open
-            if (mainNav.classList.contains('active')) {
+            // Close menu if open on mobile
+            if (window.innerWidth < 768 && mainNav.classList.contains('active')) {
                 mainNav.classList.remove('active');
             }
         });
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (targetElement) {
                     // Close mobile menu if open
-                    if (mainNav.classList.contains('active')) {
+                    if (window.innerWidth < 768 && mainNav.classList.contains('active')) {
                         mainNav.classList.remove('active');
                     }
                     
@@ -55,21 +55,72 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Sticky header effect
+    // Sticky header effect with animation
     const header = document.querySelector('header');
     const headerOffset = header.offsetTop;
+    let lastScrollTop = 0;
     
     function handleScroll() {
-        if (window.pageYOffset > headerOffset) {
-            header.classList.add('sticky');
-            document.body.style.paddingTop = header.offsetHeight + 'px';
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > headerOffset) {
+            if (!header.classList.contains('sticky')) {
+                header.classList.add('sticky');
+                document.body.style.paddingTop = header.offsetHeight + 'px';
+                
+                // Add animation class
+                header.classList.add('header-hidden');
+                setTimeout(() => {
+                    header.classList.remove('header-hidden');
+                    header.classList.add('header-visible');
+                }, 10);
+            }
+            
+            // Hide header when scrolling down, show when scrolling up
+            if (scrollTop > lastScrollTop && scrollTop > headerOffset + 200) {
+                header.classList.add('header-hidden');
+                header.classList.remove('header-visible');
+            } else {
+                header.classList.remove('header-hidden');
+                header.classList.add('header-visible');
+            }
         } else {
-            header.classList.remove('sticky');
+            header.classList.remove('sticky', 'header-hidden', 'header-visible');
             document.body.style.paddingTop = 0;
         }
+        
+        lastScrollTop = scrollTop;
     }
     
     window.addEventListener('scroll', handleScroll);
+    
+    // Add header animation styles
+    const headerStyle = document.createElement('style');
+    headerStyle.textContent = `
+        .header-hidden {
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .header-visible {
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            animation: fadeIn 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    `;
+    document.head.appendChild(headerStyle);
     
     // Form submission handling
     const subscribeForm = document.querySelector('.subscribe-form');
@@ -203,4 +254,45 @@ document.addEventListener('DOMContentLoaded', function() {
     // Run animation check on load and scroll
     window.addEventListener('load', animateOnScroll);
     window.addEventListener('scroll', animateOnScroll);
+    
+    // Add active class to navigation based on scroll position
+    function highlightNavOnScroll() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.main-navigation a');
+        
+        let currentSection = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+            
+            if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                currentSection = sectionId;
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + currentSection) {
+                link.classList.add('active');
+            }
+        });
+    }
+    
+    // Add active link style
+    const navStyle = document.createElement('style');
+    navStyle.textContent = `
+        .main-navigation a.active {
+            color: #d4af37;
+        }
+        
+        .main-navigation li:has(a.active)::after {
+            width: 100%;
+        }
+    `;
+    document.head.appendChild(navStyle);
+    
+    window.addEventListener('scroll', highlightNavOnScroll);
+    window.addEventListener('load', highlightNavOnScroll);
 });
